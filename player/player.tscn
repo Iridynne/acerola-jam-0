@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdmf24rrpgcwh"]
+
+[ext_resource type="Script" path="res://common/states/state_machine.gd" id="1_mhxim"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_xxalr"]
+[ext_resource type="Texture2D" uid="uid://d1i874ejrs6rb" path="res://player/sprites/player.png" id="1_y2cof"]
+[ext_resource type="Script" path="res://player/states/player_idle.gd" id="2_ojeyt"]
+[ext_resource type="Script" path="res://player/states/player_move.gd" id="3_aodc5"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_xxalr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y2cof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_mhxim")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_ojeyt")
+
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_aodc5")
+player = NodePath("../..")
