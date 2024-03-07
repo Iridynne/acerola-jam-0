@@ -6,6 +6,7 @@
 
 [node name="TextBox" type="MarginContainer"]
 script = ExtResource("1_0snfp")
+max_width = 256
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
