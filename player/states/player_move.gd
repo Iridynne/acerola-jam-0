@@ -2,9 +2,11 @@ class_name PlayerMove
 extends State
 
 @export var player: Player
+@export var sprite: AnimatedSprite2D
 
 func enter():
-	print("Entered state: " + name.to_lower())
+	print("Player entered state: " + name.to_lower())
+	sprite.play("walk")
 	pass
 
 func update(_delta: float):

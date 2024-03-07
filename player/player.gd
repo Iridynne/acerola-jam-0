@@ -3,10 +3,25 @@ extends CharacterBody2D
 
 @export var speed := 100
 
+@onready var health_component := $HealthComponent
+@onready var state_machine := $StateMachine
+
+func _ready():
+	health_component.damaged.connect(on_player_damaged)
+
 func _physics_process(delta):
 	move_and_slide()
 
 	if velocity.x > 0:
-		$Sprite2D.flip_h = false
+		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0:
-		$Sprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true
+
+func on_player_damaged(value: int):
+	state_machine.on_child_transition(state_machine.current_state, "hurt")
+	print("Player took %s damage" % [value])
+
+# Testing purposes
+func _unhandled_input(event):
+	if event.is_action_pressed("interact"):
+		$HealthComponent.damage(1)
