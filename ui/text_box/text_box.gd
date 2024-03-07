@@ -3,6 +3,7 @@ extends MarginContainer
 @onready var label := $MarginContainer/Label
 @onready var timer := $LetterDisplayTimer
 @onready var audio_player := $AudioStreamPlayer
+@onready var next_indicator := $NinePatchRect/Control2/NextIndicator
 
 @export var max_width := 128
 
@@ -14,6 +15,9 @@ var text = ""
 var letter_index = 0
 
 signal finished_displaying()
+
+func _ready():
+	scale = Vector2.ZERO
 
 func display_text(text_to_display: String, speech_sfx: AudioStream):
 	text = text_to_display
@@ -33,6 +37,11 @@ func display_text(text_to_display: String, speech_sfx: AudioStream):
 	global_position.y -= size.y + 12
 	
 	label.text = ""
+	
+	pivot_offset = Vector2(size.x / 2, size.y)
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.15).set_trans(Tween.TRANS_BACK)
+	
 	_display_letter()
 
 func _display_letter():
@@ -41,6 +50,7 @@ func _display_letter():
 	letter_index += 1
 	if letter_index >= text.length():
 		finished_displaying.emit()
+		next_indicator.visible = true
 		return
 	
 	match text[letter_index]:

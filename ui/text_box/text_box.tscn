@@ -1,8 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckbueo0rcgewe"]
+[gd_scene load_steps=11 format=3 uid="uid://ckbueo0rcgewe"]
 
 [ext_resource type="Script" path="res://ui/text_box/text_box.gd" id="1_0snfp"]
-[ext_resource type="Texture2D" uid="uid://g4wblwhd02wo" path="res://ui/text_box/dialogue_box.png" id="1_f0ly5"]
 [ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="2_bwud0"]
+[ext_resource type="Texture2D" uid="uid://g4wblwhd02wo" path="res://ui/text_box/sprites/dialogue_box.png" id="2_ffnep"]
+[ext_resource type="Texture2D" uid="uid://b3xstqlnptu7j" path="res://ui/text_box/sprites/dialogue_box_tail.png" id="3_i2lwr"]
+[ext_resource type="Texture2D" uid="uid://dtg6u43dtcrf3" path="res://ui/text_box/sprites/next_indicator.png" id="4_4kskr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p44vy"]
+atlas = ExtResource("4_4kskr")
+region = Rect2(0, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xmy6"]
+atlas = ExtResource("4_4kskr")
+region = Rect2(4, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b08v"]
+atlas = ExtResource("4_4kskr")
+region = Rect2(8, 0, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_car3r"]
+atlas = ExtResource("4_4kskr")
+region = Rect2(12, 0, 4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olcxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p44vy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xmy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b08v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_car3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="TextBox" type="MarginContainer"]
 script = ExtResource("1_0snfp")
@@ -10,11 +48,47 @@ max_width = 256
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_f0ly5")
+texture = ExtResource("2_ffnep")
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+
+[node name="Control" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/Control"]
+position = Vector2(20, 40)
+texture = ExtResource("3_i2lwr")
+
+[node name="Control2" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="NextIndicator" type="AnimatedSprite2D" parent="NinePatchRect/Control2"]
+visible = false
+position = Vector2(38, 38)
+sprite_frames = SubResource("SpriteFrames_olcxi")
+autoplay = "default"
+frame_progress = 0.799531
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

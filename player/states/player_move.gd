@@ -14,6 +14,9 @@ func update(_delta: float):
 		transitioned.emit(self, "idle")
 
 func physics_update(delta: float):
+	if DialogueManager.is_dialog_active:
+		return
+	
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = direction * player.speed
 
