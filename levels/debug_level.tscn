@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpolwfeuboyl8"]
+[gd_scene load_steps=6 format=3 uid="uid://cpolwfeuboyl8"]
 
 [ext_resource type="PackedScene" uid="uid://cdmf24rrpgcwh" path="res://player/player.tscn" id="1_ra6ii"]
 [ext_resource type="Texture2D" uid="uid://djrsy2qt6t6i6" path="res://tilesets/warehouse.png" id="1_x77pv"]
+[ext_resource type="PackedScene" uid="uid://bpw4mtg8urv5r" path="res://debugging/test_interactable.tscn" id="3_qckkx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvj0o"]
 texture = ExtResource("1_x77pv")
@@ -70,3 +71,6 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="Player" parent="." instance=ExtResource("1_ra6ii")]
 position = Vector2(155, 87)
+
+[node name="TestInteractable" parent="." instance=ExtResource("3_qckkx")]
+position = Vector2(59, 90)

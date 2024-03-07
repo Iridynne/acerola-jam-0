@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpw4mtg8urv5r"]
+
+[ext_resource type="Texture2D" uid="uid://d1i874ejrs6rb" path="res://player/sprites/player.png" id="1_0icyh"]
+[ext_resource type="Script" path="res://debugging/test_interactable.gd" id="1_r7c36"]
+[ext_resource type="PackedScene" uid="uid://box2apbcajaqv" path="res://interaction/interaction_area/interaction_area.tscn" id="3_pewk7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nx5y2"]
+radius = 48.0
+
+[node name="TestInteractable" type="Node2D"]
+script = ExtResource("1_r7c36")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0icyh")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_pewk7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_nx5y2")

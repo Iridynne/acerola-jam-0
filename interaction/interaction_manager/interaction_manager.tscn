@@ -7,7 +7,6 @@
 script = ExtResource("1_7b36g")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 z_index = 20
 anchors_preset = 5
 anchor_left = 0.5
@@ -16,6 +15,7 @@ offset_left = -52.5
 offset_right = 52.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 0.921569, 1)
 theme_override_fonts/font = ExtResource("2_4tojm")
 theme_override_font_sizes/font_size = 8
 text = "[E] to interact"

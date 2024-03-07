@@ -19,9 +19,3 @@ func _physics_process(delta):
 
 func on_player_damaged(value: int):
 	state_machine.on_child_transition(state_machine.current_state, "hurt")
-	print("Player took %s damage" % [value])
-
-# Testing purposes
-func _unhandled_input(event):
-	if event.is_action_pressed("interact"):
-		$HealthComponent.damage(1)
