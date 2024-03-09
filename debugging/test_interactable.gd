@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var interaction_area := $InteractionArea
-@onready var speech_sound = preload("res://entity/common/sounds/speech.wav")
+@onready var speech_sound = preload("res://entities/common/sounds/speech.wav")
 
 const lines: Array[String] = [
 	"Hey!",

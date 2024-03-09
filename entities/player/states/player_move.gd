@@ -6,7 +6,7 @@ extends State
 
 func enter():
 	print("Player entered state: " + name.to_lower())
-	sprite.play("walk")
+	sprite.play("move")
 	pass
 
 func update(_delta: float):
