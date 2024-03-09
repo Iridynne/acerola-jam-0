@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkcmyb2bkhsyr"]
+
+[ext_resource type="PackedScene" uid="uid://box2apbcajaqv" path="res://interaction/interaction_area/interaction_area.tscn" id="1_ntclj"]
+[ext_resource type="Script" path="res://items/flashlight/flashlight_pickup.gd" id="1_oaorq"]
+[ext_resource type="PackedScene" uid="uid://bbp1wsnaii5cv" path="res://items/flashlight/flashlight.tscn" id="2_g83g3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkuqf"]
+radius = 16.0
+
+[node name="FlashlightPickup" type="Node2D"]
+script = ExtResource("1_oaorq")
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_ntclj")]
+action_name = "pick up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_nkuqf")
+
+[node name="Flashlight" parent="." instance=ExtResource("2_g83g3")]

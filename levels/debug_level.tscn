@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpolwfeuboyl8"]
+[gd_scene load_steps=8 format=3 uid="uid://cpolwfeuboyl8"]
 
 [ext_resource type="PackedScene" uid="uid://cdmf24rrpgcwh" path="res://entities/player/player.tscn" id="1_ra6ii"]
 [ext_resource type="Texture2D" uid="uid://djrsy2qt6t6i6" path="res://tilesets/warehouse.png" id="1_x77pv"]
 [ext_resource type="PackedScene" uid="uid://bpw4mtg8urv5r" path="res://debugging/test_interactable.tscn" id="3_qckkx"]
 [ext_resource type="PackedScene" uid="uid://ht3qbs3avmjr" path="res://entities/enemy/enemy.tscn" id="4_wvkdu"]
+[ext_resource type="PackedScene" uid="uid://dkcmyb2bkhsyr" path="res://items/flashlight/flashlight_pickup.tscn" id="5_omrmn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvj0o"]
 texture = ExtResource("1_x77pv")
@@ -78,3 +79,9 @@ position = Vector2(59, 90)
 
 [node name="Enemy" parent="." instance=ExtResource("4_wvkdu")]
 position = Vector2(271, 88)
+
+[node name="FlashlightPickup" parent="." instance=ExtResource("5_omrmn")]
+position = Vector2(212, 63)
+
+[node name="FlashlightPickup2" parent="." instance=ExtResource("5_omrmn")]
+position = Vector2(199, 118)

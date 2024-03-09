@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdmf24rrpgcwh"]
+[gd_scene load_steps=19 format=3 uid="uid://cdmf24rrpgcwh"]
 
 [ext_resource type="Script" path="res://entities/common/states/state_machine.gd" id="1_mhxim"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxalr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://entities/player/states/player_move.gd" id="3_aodc5"]
 [ext_resource type="PackedScene" uid="uid://b6y8e2p30n8by" path="res://entities/common/health_component/health_component.tscn" id="3_jur7g"]
 [ext_resource type="Script" path="res://entities/player/states/player_hurt.gd" id="8_bb587"]
+[ext_resource type="PackedScene" uid="uid://coipvyefwrgcy" path="res://entities/player/item_component/item_component.tscn" id="9_b827w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l1ta0"]
 atlas = ExtResource("1_y2cof")
@@ -81,7 +82,7 @@ radius = 6.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-y_sort_enabled = true
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_xxalr")
 
@@ -114,4 +115,12 @@ sprite = NodePath("../../AnimatedSprite2D")
 script = ExtResource("8_bb587")
 sprite = NodePath("../../AnimatedSprite2D")
 
+[node name="ItemComponent" parent="." instance=ExtResource("9_b827w")]
+position = Vector2(0, 9)
+
+[node name="ItemSlot" parent="ItemComponent" index="0"]
+position = Vector2(12, 0)
+
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+
+[editable path="ItemComponent"]

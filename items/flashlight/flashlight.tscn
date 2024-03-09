@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbp1wsnaii5cv"]
+
+[ext_resource type="Script" path="res://items/flashlight/flashlight.gd" id="1_pqt3l"]
+[ext_resource type="Texture2D" uid="uid://d0nbvvf7ujum" path="res://items/flashlight/sprites/flashlight.png" id="2_nnv30"]
+[ext_resource type="Texture2D" uid="uid://083k6vhc6qxl" path="res://items/flashlight/sprites/flashlight_cone.png" id="3_us0kr"]
+
+[node name="Flashlight" type="Node2D"]
+script = ExtResource("1_pqt3l")
+cooldown = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nnv30")
+
+[node name="LightCone" type="PointLight2D" parent="."]
+visible = false
+texture = ExtResource("3_us0kr")
+offset = Vector2(28, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
