@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dodt5cesi7jvv"]
+[gd_scene load_steps=4 format=3 uid="uid://dodt5cesi7jvv"]
 
+[ext_resource type="Script" path="res://camera/camera.gd" id="1_ivp3c"]
 [ext_resource type="Shader" path="res://shaders/vhs_crt.gdshader" id="1_o1l7d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8fqr"]
@@ -27,6 +28,7 @@ shader_parameter/vignette_intensity = 0.8
 shader_parameter/vignette_opacity = 0.5
 
 [node name="Camera" type="Camera2D"]
+script = ExtResource("1_ivp3c")
 
 [node name="Effects" type="Control" parent="."]
 layout_mode = 3
@@ -42,7 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 z_index = -10
 anchors_preset = 8
 anchor_left = 0.5
