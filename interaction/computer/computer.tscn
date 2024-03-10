@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca2ff87ro6hkc"]
+
+[ext_resource type="Texture2D" uid="uid://dnjgnxunn3xrh" path="res://interaction/computer/sprites/computer.png" id="1_4fsas"]
+[ext_resource type="Script" path="res://interaction/computer/computer.gd" id="1_uyvb2"]
+[ext_resource type="PackedScene" uid="uid://box2apbcajaqv" path="res://interaction/interaction_area/interaction_area.tscn" id="2_5efah"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7eula"]
+radius = 16.0
+
+[node name="Computer" type="Node2D"]
+script = ExtResource("1_uyvb2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4fsas")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_5efah")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_7eula")

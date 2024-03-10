@@ -1,11 +1,27 @@
-[gd_scene load_steps=16 format=3 uid="uid://ht3qbs3avmjr"]
+[gd_scene load_steps=25 format=3 uid="uid://ht3qbs3avmjr"]
 
 [ext_resource type="Script" path="res://entities/enemy/enemy.gd" id="1_5f4td"]
 [ext_resource type="Script" path="res://entities/common/health_component/health_component.gd" id="2_mir1p"]
 [ext_resource type="Texture2D" uid="uid://d351ct7mq7dr" path="res://entities/enemy/sprites/enemy.png" id="2_n8keh"]
 [ext_resource type="Script" path="res://entities/common/states/state_machine.gd" id="3_q33f2"]
 [ext_resource type="Script" path="res://entities/enemy/states/enemy_idle.gd" id="4_bflh8"]
-[ext_resource type="Script" path="res://entities/enemy/states/enemy_move.gd" id="5_o4v55"]
+[ext_resource type="Script" path="res://entities/enemy/states/enemy_follow.gd" id="6_v5145"]
+[ext_resource type="PackedScene" uid="uid://dyk6dgdvdp0h0" path="res://entities/common/hurtbox/hurtbox.tscn" id="7_88luo"]
+[ext_resource type="Script" path="res://entities/enemy/states/enemy_hurt.gd" id="7_a7ppo"]
+[ext_resource type="Script" path="res://entities/enemy/states/enemy_attack.gd" id="8_j5i5e"]
+[ext_resource type="PackedScene" uid="uid://cpgywjb8me5mb" path="res://entities/common/hitbox/hitbox.tscn" id="9_qrk4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wirue"]
+atlas = ExtResource("2_n8keh")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d51ej"]
+atlas = ExtResource("2_n8keh")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u802q"]
+atlas = ExtResource("2_n8keh")
+region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6l8q"]
 atlas = ExtResource("2_n8keh")
@@ -37,6 +53,20 @@ region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s3p2s"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wirue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d51ej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u802q")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r6l8q")
@@ -78,12 +108,22 @@ animations = [{
 radius = 6.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o15gu"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwhg7"]
+radius = 8.0
+height = 17.0
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_5f4td")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s3p2s")
-animation = &"hurt"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -91,16 +131,57 @@ shape = SubResource("CapsuleShape2D_83kv1")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_mir1p")
+max_health = 80
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_q33f2")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite")]
 script = ExtResource("4_bflh8")
-sprite = NodePath("../../AnimatedSprite2D")
-
-[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite")]
-script = ExtResource("5_o4v55")
 enemy = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite")]
+script = ExtResource("6_v5145")
+enemy = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite", "audio_player")]
+script = ExtResource("7_a7ppo")
+sprite = NodePath("../../AnimatedSprite2D")
+audio_player = NodePath("../../AudioStreamPlayer")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite", "hitbox")]
+script = ExtResource("8_j5i5e")
+sprite = NodePath("../../AnimatedSprite2D")
+hitbox = NodePath("../../Hitbox")
+
+[node name="Hurtbox" parent="." instance=ExtResource("7_88luo")]
+position = Vector2(0, 9)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_o15gu")
+
+[node name="DamageTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hitbox" parent="." instance=ExtResource("9_qrk4x")]
+position = Vector2(0, 9)
+collision_layer = 4
+collision_mask = 2
+damage = 5
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CapsuleShape2D_gwhg7")
+disabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

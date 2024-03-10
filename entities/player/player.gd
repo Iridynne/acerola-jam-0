@@ -33,3 +33,7 @@ func on_player_damaged(value: int):
 func _input(event):
 	if event.is_action_pressed("use"):
 		item_component.use_item()
+
+func _on_hurtbox_area_entered(area):
+	if area is Hitbox:
+		health_component.damage(area.damage)

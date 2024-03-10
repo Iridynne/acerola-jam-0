@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c442s7b8nsvgj"]
+
+[ext_resource type="Script" path="res://debugging/debug_sprite/debug_sprite.gd" id="1_eo52i"]
+
+[node name="DebugSprite" type="Sprite2D"]
+script = ExtResource("1_eo52i")

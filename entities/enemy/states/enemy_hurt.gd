@@ -1,7 +1,7 @@
-class_name PlayerHurt
+class_name EnemyHurt
 extends State
 
-@onready var hurt_sfx := preload("res://entities/player/sounds/player_hurt.wav")
+@onready var hurt_sfx := preload("res://entities/enemy/sounds/enemy_hurt.wav")
 
 @export var sprite: AnimatedSprite2D
 @export var audio_player: AudioStreamPlayer
@@ -18,6 +18,7 @@ func enter():
 	new_audio_player.play()
 	await new_audio_player.finished
 	new_audio_player.queue_free()
+	
 
 func _on_animation_finished():
 	sprite.animation_finished.disconnect(_on_animation_finished)

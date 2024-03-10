@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="acerola-jam-0"
-run/main_scene="res://levels/debug_level.tscn"
+run/main_scene="res://levels/main_menu/menu_level.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 InteractionManager="*res://interaction/interaction_manager/interaction_manager.tscn"
 DialogueManager="*res://singletons/dialogue_manager.gd"
+SpawningManager="*res://spawn/spawning_manager/spawning_manager.tscn"
 
 [display]
 
@@ -27,7 +28,7 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-mouse_cursor/custom_image="res://ui/sprites/cursor.png"
+mouse_cursor/custom_image="res://ui/cursor/cursor.png"
 
 [input]
 
@@ -70,13 +71,9 @@ use={
 
 [layer_names]
 
-2d_physics/layer_1="world"
+2d_physics/layer_1="environment"
 2d_physics/layer_2="player"
-2d_physics/layer_3="item"
-2d_physics/layer_4="player_hitbox"
-2d_physics/layer_5="player_hurtbox"
-2d_physics/layer_6="enemy_hitbox"
-2d_physics/layer_7="enemy_hurtbox"
+2d_physics/layer_3="enemy"
 
 [rendering]
 

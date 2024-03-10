@@ -4,7 +4,6 @@ extends State
 @export var sprite: AnimatedSprite2D
 
 func enter():
-	print("Player entered state: " + name.to_lower())
 	sprite.play("idle")
 	pass
 

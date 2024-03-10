@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djrsy2qt6t6i6"
-path="res://.godot/imported/warehouse.png-776a1adb9493264e8a8dae77317ad0e5.ctex"
+uid="uid://c81ud7jq5tisj"
+path="res://.godot/imported/debug_enemy.png-88ba49ee7af0b16c982373b855211fbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/warehouse.png"
-dest_files=["res://.godot/imported/warehouse.png-776a1adb9493264e8a8dae77317ad0e5.ctex"]
+source_file="res://debugging/debug_sprite/sprites/debug_enemy.png"
+dest_files=["res://.godot/imported/debug_enemy.png-88ba49ee7af0b16c982373b855211fbe.ctex"]
 
 [params]
 

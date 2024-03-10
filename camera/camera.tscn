@@ -20,7 +20,7 @@ shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
 shader_parameter/aberration = 0.01
-shader_parameter/brightness = 1.4
+shader_parameter/brightness = 1.2
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
@@ -29,20 +29,8 @@ shader_parameter/vignette_opacity = 0.5
 
 [node name="Camera" type="Camera2D"]
 script = ExtResource("1_ivp3c")
-
-[node name="Effects" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-
-[node name="VHS" type="CanvasLayer" parent="Effects"]
-
-[node name="ColorRect" type="ColorRect" parent="Effects/VHS"]
-material = SubResource("ShaderMaterial_u8fqr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+abberation = 0.01
+brightness = 1.2
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -10
@@ -57,4 +45,21 @@ offset_right = 160.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.152941, 0.152941, 0.211765, 1)
+
+[node name="Effects" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="VHS" type="CanvasLayer" parent="Effects"]
+
+[node name="ColorRect" type="ColorRect" parent="Effects/VHS"]
+material = SubResource("ShaderMaterial_u8fqr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player = get_tree().get_first_node_in_group("player")
+var player
 @onready var label = $Label
 
 const base_text = "[E] to "
@@ -17,6 +17,9 @@ func unregister_area(area: InteractionArea):
 		active_areas.remove_at(index)
 
 func _process(delta):
+	if !player:
+		player = get_tree().get_first_node_in_group("player")
+	
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
@@ -28,8 +31,8 @@ func _process(delta):
 		label.hide()
 
 func _sort_by_distance_to_player(area1: InteractionArea, area2: InteractionArea):
-	var area1_to_player = player.global_position.distance_to(area1)
-	var area2_to_player = player.global_position.distance_to(area2)
+	var area1_to_player = player.global_position.distance_to(area1.global_position)
+	var area2_to_player = player.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
 
 func _input(event):

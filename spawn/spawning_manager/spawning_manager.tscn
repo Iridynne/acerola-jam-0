@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5dhaxhe62juq"]
+
+[ext_resource type="Script" path="res://spawn/spawning_manager/spawning_manager.gd" id="1_3vvrw"]
+
+[node name="SpawningManager" type="Node"]
+script = ExtResource("1_3vvrw")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true

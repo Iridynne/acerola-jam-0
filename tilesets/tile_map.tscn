@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://7wu45flmm070"]
+
+[ext_resource type="TileSet" uid="uid://b7dbyc232liut" path="res://tilesets/tileset.tres" id="1_15c4m"]
+
+[node name="TileMap" type="TileMap"]
+y_sort_enabled = true
+tile_set = ExtResource("1_15c4m")
+format = 2
+layer_0/name = "Level"
+layer_0/z_index = -1
+layer_1/name = "Objects"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array()

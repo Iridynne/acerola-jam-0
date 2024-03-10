@@ -1,6 +1,7 @@
 extends Item
 
 @onready var light_cone := $LightCone
+@onready var hitbox := $Hitbox
 @onready var audio_player := $AudioStreamPlayer
 @onready var use_sfx := preload("res://items/flashlight/sounds/click.wav")
 
@@ -13,6 +14,7 @@ func _ready():
 func _on_use():
 	is_on = !is_on
 	light_cone.visible = is_on
+	hitbox.collision_shape.disabled = !is_on
 	
 	# Play use sound
 	var new_audio_player = audio_player.duplicate()
