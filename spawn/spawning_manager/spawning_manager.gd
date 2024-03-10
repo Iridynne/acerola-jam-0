@@ -15,11 +15,6 @@ var is_spawning := false
 signal spawned_batch
 signal finished_spawning
 
-func _ready():
-	spawn_timer.start(2)
-	await spawn_timer.timeout
-	start_spawning(5, 7)
-
 func start_spawning(to_spawn_at_once: int, to_spawn_total: int = 0):
 	if !spawn_points:
 		return

@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://n1c63y2s0pjj"]
+
+[ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_t1f82"]
+[ext_resource type="PackedScene" uid="uid://dodt5cesi7jvv" path="res://camera/camera.tscn" id="2_ryhv6"]
+[ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="3_t0sqv"]
+[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/button/button.tscn" id="4_dvivn"]
+[ext_resource type="PackedScene" uid="uid://vk1gdogyo6gq" path="res://ui/options_menu/options_menu.tscn" id="5_htqhp"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1f82")
+
+[node name="Camera" parent="." instance=ExtResource("2_ryhv6")]
+anchor_mode = 0
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.376471, 0.376471, 0.439216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_t0sqv")
+text = "N1GHTF4LL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Separator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_dvivn")]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_dvivn")]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_dvivn")]
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("5_htqhp")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -20,7 +20,7 @@ func _process(delta):
 	if !player:
 		player = get_tree().get_first_node_in_group("player")
 	
-	if active_areas.size() > 0 && can_interact:
+	if active_areas.size() > 0 && can_interact && !DialogueManager.is_dialog_active:
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_text + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position

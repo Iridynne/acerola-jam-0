@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="acerola-jam-0"
-run/main_scene="res://levels/main_menu/menu_level.tscn"
+run/main_scene="res://levels/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
