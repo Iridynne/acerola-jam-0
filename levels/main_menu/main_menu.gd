@@ -5,8 +5,14 @@ extends Control
 @onready var margin_container = $MarginContainer
 @onready var options_menu = $OptionsMenu
 
+@onready var quit_button = $MarginContainer/HBoxContainer/VBoxContainer/Quit
+
 func _ready():
 	options_menu.exited_option_menu.connect(_on_exit_options_menu)
+	
+	# Hide quit button on Web
+	if OS.has_feature("web"):
+		quit_button.hide()
 
 func _on_play_pressed():
 	get_tree().change_scene_to_packed(main_level)
