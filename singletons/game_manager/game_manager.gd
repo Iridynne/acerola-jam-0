@@ -29,10 +29,11 @@ func _ready():
 	current_time_hour = shift_start_hour
 	current_time_minutes = shift_start_minutes
 	
-	timer.start(2)
-	await timer.timeout
-	
-	start_game()
+	# Test code
+	#timer.start(2)
+	#await timer.timeout
+	#
+	#start_game()
 
 func start_game():
 	shift_ended.connect(_on_shift_ended)
