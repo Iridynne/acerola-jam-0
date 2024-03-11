@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://pq8kvdkw3vxp"]
+
+[ext_resource type="Script" path="res://singletons/game_manager/game_manager.gd" id="1_e1q0m"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_e1q0m")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

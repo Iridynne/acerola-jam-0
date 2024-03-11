@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://vk1gdogyo6gq"]
 
 [ext_resource type="Script" path="res://ui/options_menu/options_menu.gd" id="1_k8f3y"]
-[ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="2_rwc0p"]
-[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/button/button.tscn" id="3_e03s7"]
+[ext_resource type="PackedScene" uid="uid://bw5nofb8uccj3" path="res://ui/custom_components/label.tscn" id="2_dab8p"]
+[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/custom_components/button/button.tscn" id="3_e03s7"]
 [ext_resource type="PackedScene" uid="uid://c28oxj5exbmyk" path="res://ui/settings_tab_container/settings_tab_container.tscn" id="3_tketw"]
 
 [node name="OptionsMenu" type="Control"]
@@ -39,10 +39,8 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = -16
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Title" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_dab8p")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_rwc0p")
-theme_override_font_sizes/font_size = 8
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1

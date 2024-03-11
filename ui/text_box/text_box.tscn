@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckbueo0rcgewe"]
 
 [ext_resource type="Script" path="res://ui/text_box/text_box.gd" id="1_0snfp"]
-[ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="2_bwud0"]
 [ext_resource type="Texture2D" uid="uid://g4wblwhd02wo" path="res://ui/text_box/sprites/dialogue_box.png" id="2_ffnep"]
 [ext_resource type="Texture2D" uid="uid://b3xstqlnptu7j" path="res://ui/text_box/sprites/dialogue_box_tail.png" id="3_i2lwr"]
 [ext_resource type="Texture2D" uid="uid://dtg6u43dtcrf3" path="res://ui/text_box/sprites/next_indicator.png" id="4_4kskr"]
+[ext_resource type="PackedScene" uid="uid://bw5nofb8uccj3" path="res://ui/custom_components/label.tscn" id="5_xbkac"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p44vy"]
 atlas = ExtResource("4_4kskr")
@@ -97,11 +97,9 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" parent="MarginContainer" instance=ExtResource("5_xbkac")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.152941, 0.152941, 0.211765, 1)
-theme_override_fonts/font = ExtResource("2_bwud0")
-theme_override_font_sizes/font_size = 8
 
 [node name="LetterDisplayTimer" type="Timer" parent="."]
 one_shot = true

@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://j8rxq0l7i2tl"]
+[gd_scene load_steps=7 format=3 uid="uid://j8rxq0l7i2tl"]
 
 [ext_resource type="Script" path="res://levels/main_level/main_level.gd" id="1_1da48"]
 [ext_resource type="PackedScene" uid="uid://7wu45flmm070" path="res://tilesets/tile_map.tscn" id="1_x077j"]
+[ext_resource type="PackedScene" uid="uid://djn2vnly53fvy" path="res://ui/hud/hud.tscn" id="2_20dgy"]
 [ext_resource type="PackedScene" uid="uid://ca2ff87ro6hkc" path="res://interaction/computer/computer.tscn" id="2_r3g6e"]
 [ext_resource type="PackedScene" uid="uid://dkcmyb2bkhsyr" path="res://interaction/flashlight_pickup/flashlight_pickup.tscn" id="3_3pts6"]
 [ext_resource type="PackedScene" uid="uid://cdmf24rrpgcwh" path="res://entities/player/player.tscn" id="4_cnlew"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_1da48")
+
+[node name="Hud" parent="." instance=ExtResource("2_20dgy")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.262745, 0.262745, 0.309804, 1)
@@ -24,3 +27,5 @@ position = Vector2(58, 36)
 
 [node name="Player" parent="." instance=ExtResource("4_cnlew")]
 position = Vector2(32, 35)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

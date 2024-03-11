@@ -29,10 +29,10 @@ func _on_enemy_damaged(value: int):
 	state_machine.on_child_transition(state_machine.current_state, "hurt")
 
 func _on_enemy_died():
-	queue_free()
+	state_machine.on_child_transition(state_machine.current_state, "death")
 
 func _on_hurtbox_area_entered(hitbox: Hitbox):
-	if hitbox == null:
+	if hitbox == null or !health_component.is_alive:
 		return
 
 	area_hitbox = hitbox
@@ -42,7 +42,7 @@ func _on_hurtbox_area_entered(hitbox: Hitbox):
 
 
 func _on_hurtbox_area_exited(hitbox: Hitbox):
-	if hitbox == null:
+	if hitbox == null or !health_component.is_alive:
 		return
 	
 	area_hitbox = null

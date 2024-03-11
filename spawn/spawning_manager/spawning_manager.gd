@@ -17,6 +17,7 @@ signal finished_spawning
 
 func start_spawning(to_spawn_at_once: int, to_spawn_total: int = 0):
 	if !spawn_points:
+		print('No spawn points')
 		return
 	
 	batch_size = to_spawn_at_once

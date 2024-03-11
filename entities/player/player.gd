@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var state_machine := $StateMachine
 @onready var item_component := $ItemComponent
 
+@onready var camera := $Camera
+
 func _ready():
 	health_component.damaged.connect(on_player_damaged)
 

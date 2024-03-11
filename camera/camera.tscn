@@ -33,6 +33,7 @@ abberation = 0.01
 brightness = 1.2
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 z_index = -10
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,6 +55,8 @@ anchors_preset = 0
 mouse_filter = 2
 
 [node name="VHS" type="CanvasLayer" parent="Effects"]
+layer = 10
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Effects/VHS"]
 material = SubResource("ShaderMaterial_u8fqr")

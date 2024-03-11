@@ -1,4 +1,4 @@
-class_name EnemyHurt
+class_name EnemyDeath
 extends State
 
 @onready var hurt_sfx := preload("res://entities/enemy/sounds/enemy_hurt.wav")
@@ -6,6 +6,7 @@ extends State
 @export var enemy: Enemy
 @export var sprite: AnimatedSprite2D
 @export var audio_player: AudioStreamPlayer
+@export var death_timer: Timer
 
 func enter():
 	enemy.velocity = Vector2.ZERO
@@ -26,4 +27,7 @@ func enter():
 func _on_animation_finished():
 	sprite.animation_finished.disconnect(_on_animation_finished)
 	
-	transitioned.emit(self, "idle")
+	death_timer.start(1)
+	await death_timer.timeout
+	
+	enemy.queue_free()

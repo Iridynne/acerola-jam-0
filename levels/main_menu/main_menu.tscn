@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://levels/main_menu/main_menu.gd" id="1_t1f82"]
 [ext_resource type="PackedScene" uid="uid://dodt5cesi7jvv" path="res://camera/camera.tscn" id="2_ryhv6"]
-[ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="3_t0sqv"]
-[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/button/button.tscn" id="4_dvivn"]
+[ext_resource type="PackedScene" uid="uid://bw5nofb8uccj3" path="res://ui/custom_components/label.tscn" id="3_uw7b7"]
+[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/custom_components/button/button.tscn" id="4_dvivn"]
 [ext_resource type="PackedScene" uid="uid://vk1gdogyo6gq" path="res://ui/options_menu/options_menu.tscn" id="5_htqhp"]
 
-[node name="Menu" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,9 +46,9 @@ theme_override_constants/separation = 8
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Title" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_uw7b7")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_t0sqv")
+theme_override_font_sizes/font_size = 16
 text = "N1GHTF4LL"
 horizontal_alignment = 1
 vertical_alignment = 1

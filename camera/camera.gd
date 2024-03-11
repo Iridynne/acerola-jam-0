@@ -28,9 +28,12 @@ extends Camera2D
 		return vhs_shader_material.get_shader_parameter('brightness')
 
 func _ready():
-	if Engine.is_editor_hint():
-		background.hide()
-		
-		var canvas_layers = effects.get_children()
-		for layer in canvas_layers:
-			layer.hide()
+	var is_editor = Engine.is_editor_hint()
+	
+	background.visible = !is_editor
+	toggle_effects(!is_editor)
+
+func toggle_effects(value: bool):
+	var canvas_layers = effects.get_children()
+	for layer in canvas_layers:
+		layer.visible = value

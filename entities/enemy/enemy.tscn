@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ht3qbs3avmjr"]
+[gd_scene load_steps=26 format=3 uid="uid://ht3qbs3avmjr"]
 
 [ext_resource type="Script" path="res://entities/enemy/enemy.gd" id="1_5f4td"]
 [ext_resource type="Script" path="res://entities/common/health_component/health_component.gd" id="2_mir1p"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dyk6dgdvdp0h0" path="res://entities/common/hurtbox/hurtbox.tscn" id="7_88luo"]
 [ext_resource type="Script" path="res://entities/enemy/states/enemy_hurt.gd" id="7_a7ppo"]
 [ext_resource type="Script" path="res://entities/enemy/states/enemy_attack.gd" id="8_j5i5e"]
+[ext_resource type="Script" path="res://entities/enemy/states/enemy_death.gd" id="9_mncqd"]
 [ext_resource type="PackedScene" uid="uid://cpgywjb8me5mb" path="res://entities/common/hitbox/hitbox.tscn" id="9_qrk4x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wirue"]
@@ -147,8 +148,9 @@ script = ExtResource("6_v5145")
 enemy = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite", "audio_player")]
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite", "audio_player")]
 script = ExtResource("7_a7ppo")
+enemy = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
 audio_player = NodePath("../../AudioStreamPlayer")
 
@@ -156,6 +158,13 @@ audio_player = NodePath("../../AudioStreamPlayer")
 script = ExtResource("8_j5i5e")
 sprite = NodePath("../../AnimatedSprite2D")
 hitbox = NodePath("../../Hitbox")
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite", "audio_player", "death_timer")]
+script = ExtResource("9_mncqd")
+enemy = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+audio_player = NodePath("../../AudioStreamPlayer")
+death_timer = NodePath("../../DeathTimer")
 
 [node name="Hurtbox" parent="." instance=ExtResource("7_88luo")]
 position = Vector2(0, 9)
@@ -177,6 +186,9 @@ damage = 5
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CapsuleShape2D_gwhg7")
 disabled = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

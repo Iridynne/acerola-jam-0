@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5nofb8uccj3"]
+
+[ext_resource type="Theme" uid="uid://bnkg8lxpdayoq" path="res://ui/themes/font_theme.tres" id="1_0aete"]
+
+[node name="Label" type="Label"]
+theme = ExtResource("1_0aete")
+theme_override_colors/font_color = Color(1, 1, 0.921569, 1)

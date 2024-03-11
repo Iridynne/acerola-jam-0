@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://t4j713qylqb1"]
 
-[ext_resource type="FontFile" uid="uid://biqvjoct3mvo7" path="res://ui/fonts/PublicPixel.otf" id="1_sqg0v"]
-[ext_resource type="Texture2D" uid="uid://dh0pk8ba7r32e" path="res://ui/button/button.png" id="2_5p30p"]
+[ext_resource type="Theme" uid="uid://bnkg8lxpdayoq" path="res://ui/themes/font_theme.tres" id="1_5c6es"]
+[ext_resource type="Texture2D" uid="uid://dh0pk8ba7r32e" path="res://ui/custom_components/button/button.png" id="2_5p30p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjb50"]
 texture = ExtResource("2_5p30p")
@@ -30,13 +30,12 @@ region_rect = Rect2(96, 0, 48, 16)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dydaw"]
 
 [node name="Button" type="Button"]
+theme = ExtResource("1_5c6es")
 theme_override_colors/font_color = Color(0.152941, 0.152941, 0.211765, 1)
 theme_override_colors/font_pressed_color = Color(0.152941, 0.152941, 0.211765, 1)
 theme_override_colors/font_hover_color = Color(0.152941, 0.152941, 0.211765, 1)
 theme_override_colors/font_focus_color = Color(0.152941, 0.152941, 0.211765, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.152941, 0.152941, 0.211765, 1)
-theme_override_fonts/font = ExtResource("1_sqg0v")
-theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxTexture_jjb50")
 theme_override_styles/hover = SubResource("StyleBoxTexture_3dj73")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pq3ih")
