@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdmf24rrpgcwh"]
+[gd_scene load_steps=22 format=3 uid="uid://cdmf24rrpgcwh"]
 
 [ext_resource type="Script" path="res://entities/common/states/state_machine.gd" id="1_mhxim"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxalr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://entities/player/states/player_move.gd" id="3_aodc5"]
 [ext_resource type="PackedScene" uid="uid://b6y8e2p30n8by" path="res://entities/common/health_component/health_component.tscn" id="3_jur7g"]
 [ext_resource type="Script" path="res://entities/player/states/player_hurt.gd" id="8_bb587"]
+[ext_resource type="Script" path="res://entities/player/states/player_death.gd" id="9_3c4r8"]
 [ext_resource type="PackedScene" uid="uid://coipvyefwrgcy" path="res://entities/player/item_component/item_component.tscn" id="9_b827w"]
 [ext_resource type="PackedScene" uid="uid://dyk6dgdvdp0h0" path="res://entities/common/hurtbox/hurtbox.tscn" id="10_lvwuy"]
 
@@ -91,6 +92,7 @@ z_index = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_xxalr")
+speed = 80
 
 [node name="Camera" parent="." instance=ExtResource("2_lowok")]
 
@@ -108,8 +110,9 @@ shape = SubResource("CapsuleShape2D_437jv")
 script = ExtResource("1_mhxim")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("2_ojeyt")
+player = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite")]
@@ -119,6 +122,12 @@ sprite = NodePath("../../AnimatedSprite2D")
 
 [node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite", "audio_player")]
 script = ExtResource("8_bb587")
+sprite = NodePath("../../AnimatedSprite2D")
+audio_player = NodePath("../../AudioStreamPlayer")
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "sprite", "audio_player")]
+script = ExtResource("9_3c4r8")
+player = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
 audio_player = NodePath("../../AudioStreamPlayer")
 

@@ -24,6 +24,10 @@ func start_spawning(to_spawn_at_once: int, to_spawn_total: int = 0):
 	total_to_spawn = to_spawn_total
 	is_spawning = true
 
+func stop_spawning():
+	finished_spawning.emit()
+	is_spawning = false
+
 func _physics_process(delta):
 	var enemies_alive = get_tree().get_nodes_in_group("enemy")
 	if enemies_alive.size() == 0 && is_spawning:
@@ -44,6 +48,9 @@ func _spawn_batch():
 		return
 	
 	for index in range(0, batch_size):
+		if !is_spawning:
+			return
+		
 		var random_spawnpoint = spawn_points.pick_random()
 		random_spawnpoint.spawn()
 		spawn_timer.start(spawn_delay)
@@ -51,4 +58,5 @@ func _spawn_batch():
 	
 	print('Spawned %s enemies' % [enemies_to_spawn])
 	spawned_in_total += enemies_to_spawn
+	batch_size += 1
 	spawned_batch.emit()

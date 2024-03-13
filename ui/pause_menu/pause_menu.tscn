@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/custom_components/button/button.tscn" id="3_48gno"]
 
 [node name="PauseMenu" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +40,7 @@ theme_override_constants/separation = 8
 
 [node name="Title" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_v8msa")]
 layout_mode = 2
-text = "Paused"
+text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 

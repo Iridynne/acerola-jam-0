@@ -1,6 +1,7 @@
 extends Node
 
 @onready var text_box_scene = preload('res://ui/text_box/text_box.tscn')
+@onready var speech_sound = preload('res://entities/common/sounds/speech.wav')
 
 var dialogue_lines: Array[String] = []
 var current_line_index := 0
@@ -15,7 +16,7 @@ var can_advance_line = false
 
 signal dialogue_finished()
 
-func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream):
+func start_dialog(position: Vector2, lines: Array[String], speech_sfx: AudioStream = speech_sound):
 	if is_dialog_active:
 		return
 	

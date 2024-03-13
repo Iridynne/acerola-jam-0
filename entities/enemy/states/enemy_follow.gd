@@ -11,8 +11,9 @@ func enter():
 	pass
 
 func physics_update(delta: float):
-	if !player.health_component.is_alive:
+	if !player or !player.health_component.is_alive:
 		transitioned.emit(self, "idle")
+		return
 	
 	var direction = player.global_position - enemy.global_position
 	

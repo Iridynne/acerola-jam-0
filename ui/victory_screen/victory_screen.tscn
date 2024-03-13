@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://d345hek6xhs7"]
+
+[ext_resource type="Script" path="res://ui/victory_screen/victory_screen.gd" id="1_33unr"]
+[ext_resource type="PackedScene" uid="uid://bw5nofb8uccj3" path="res://ui/custom_components/label.tscn" id="1_x3b4p"]
+[ext_resource type="PackedScene" uid="uid://t4j713qylqb1" path="res://ui/custom_components/button/button.tscn" id="2_dtsha"]
+
+[node name="VictoryScreen" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_33unr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.376471, 0.376471, 0.439216, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="Title" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("1_x3b4p")]
+layout_mode = 2
+text = "THANKS FOR PLAYING"
+
+[node name="PlayAgain" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_dtsha")]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Quit" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_dtsha")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://j8rxq0l7i2tl"]
+[gd_scene load_steps=11 format=3 uid="uid://j8rxq0l7i2tl"]
 
 [ext_resource type="Script" path="res://levels/main_level/main_level.gd" id="1_1da48"]
 [ext_resource type="PackedScene" uid="uid://7wu45flmm070" path="res://tilesets/tile_map.tscn" id="1_x077j"]
@@ -6,11 +6,74 @@
 [ext_resource type="PackedScene" uid="uid://ca2ff87ro6hkc" path="res://interaction/computer/computer.tscn" id="2_r3g6e"]
 [ext_resource type="PackedScene" uid="uid://dkcmyb2bkhsyr" path="res://interaction/flashlight_pickup/flashlight_pickup.tscn" id="3_3pts6"]
 [ext_resource type="PackedScene" uid="uid://cdmf24rrpgcwh" path="res://entities/player/player.tscn" id="4_cnlew"]
+[ext_resource type="PackedScene" uid="uid://cvky7lvnrm2dg" path="res://spawn/spawn_point/spawn_point.tscn" id="7_tlmxb"]
+
+[sub_resource type="Animation" id="Animation_oidp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneFadeContainer/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CutsceneFadeContainer/CanvasLayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_28a0q"]
+resource_name = "fade_in"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneFadeContainer/CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CutsceneFadeContainer/CanvasLayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ic641"]
+_data = {
+"RESET": SubResource("Animation_oidp6"),
+"fade_in": SubResource("Animation_28a0q")
+}
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_1da48")
 
-[node name="Hud" parent="." instance=ExtResource("2_20dgy")]
+[node name="Hud" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_20dgy")]
+player = NodePath("../Player")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.262745, 0.262745, 0.309804, 1)
@@ -28,4 +91,60 @@ position = Vector2(58, 36)
 [node name="Player" parent="." instance=ExtResource("4_cnlew")]
 position = Vector2(32, 35)
 
+[node name="Spawnpoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(28, 244)
+
+[node name="SpawnPoint2" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(340, 244)
+
+[node name="SpawnPoint3" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(192, 244)
+
+[node name="SpawnPoint4" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(28, 152)
+
+[node name="SpawnPoint5" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(340, 152)
+
+[node name="SpawnPoint6" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(192, 152)
+
+[node name="SpawnPoint7" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(340, 72)
+
+[node name="SpawnPoint8" parent="Spawnpoints" instance=ExtResource("7_tlmxb")]
+position = Vector2(192, 72)
+
+[node name="CutsceneFadeContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CutsceneFadeContainer"]
+
+[node name="ColorRect" type="ColorRect" parent="CutsceneFadeContainer/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TempCollider" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TempCollider"]
+polygon = PackedVector2Array(0, 64, 72, 64, 72, 0, 88, 0, 88, 80, 0, 80)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ic641")
+}

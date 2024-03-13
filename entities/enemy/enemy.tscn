@@ -121,6 +121,8 @@ height = 17.0
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_5f4td")
+speed = 55
+detection_range = 1000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s3p2s")

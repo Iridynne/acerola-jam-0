@@ -11,7 +11,7 @@ func enter():
 	pass
 
 func update(_delta: float):
-	if !player.health_component.is_alive:
+	if !player or !player.health_component.is_alive:
 		return
 	
 	var direction = player.global_position - enemy.global_position

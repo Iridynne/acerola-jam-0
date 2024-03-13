@@ -1,7 +1,6 @@
 class_name MainMenu
 extends Control
 
-@onready var main_level = preload("res://levels/main_level/main_level.tscn")
 @onready var margin_container = $MarginContainer
 @onready var options_menu = $OptionsMenu
 
@@ -12,10 +11,11 @@ func _ready():
 	
 	# Hide quit button on Web
 	if OS.has_feature("web"):
+		
 		quit_button.hide()
 
 func _on_play_pressed():
-	get_tree().change_scene_to_packed(main_level)
+	get_tree().change_scene_to_file("res://levels/main_level/main_level.tscn")
 
 func _on_options_pressed():
 	margin_container.hide()

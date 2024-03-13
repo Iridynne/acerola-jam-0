@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpolwfeuboyl8"]
+[gd_scene load_steps=8 format=3 uid="uid://cpolwfeuboyl8"]
 
 [ext_resource type="TileSet" uid="uid://b7dbyc232liut" path="res://tilesets/tileset.tres" id="1_ei6uf"]
 [ext_resource type="PackedScene" uid="uid://cdmf24rrpgcwh" path="res://entities/player/player.tscn" id="1_ra6ii"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dkcmyb2bkhsyr" path="res://interaction/flashlight_pickup/flashlight_pickup.tscn" id="5_omrmn"]
 [ext_resource type="PackedScene" uid="uid://ca2ff87ro6hkc" path="res://interaction/computer/computer.tscn" id="6_cyk7s"]
 [ext_resource type="PackedScene" uid="uid://cvky7lvnrm2dg" path="res://spawn/spawn_point/spawn_point.tscn" id="6_mnde2"]
-[ext_resource type="PackedScene" uid="uid://ht3qbs3avmjr" path="res://entities/enemy/enemy.tscn" id="7_qeo0c"]
 [ext_resource type="PackedScene" uid="uid://djn2vnly53fvy" path="res://ui/hud/hud.tscn" id="8_ybmkm"]
 
 [node name="DebugLevel" type="Node2D"]
@@ -39,10 +38,9 @@ position = Vector2(152, 32)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("6_mnde2")]
 position = Vector2(287, 100)
-scene_to_spawn = ExtResource("7_qeo0c")
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("6_mnde2")]
 position = Vector2(194, 148)
-scene_to_spawn = ExtResource("7_qeo0c")
 
-[node name="Hud" parent="." instance=ExtResource("8_ybmkm")]
+[node name="Hud" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ybmkm")]
+player = NodePath("../Player")

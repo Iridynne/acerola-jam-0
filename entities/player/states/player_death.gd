@@ -1,16 +1,13 @@
-class_name EnemyDeath
+class_name PlayerDeath
 extends State
 
-@onready var hurt_sfx := preload("res://entities/enemy/sounds/enemy_hurt.wav")
+@onready var hurt_sfx := preload("res://entities/player/sounds/player_hurt.wav")
 
-@export var enemy: Enemy
+@export var player: Player
 @export var sprite: AnimatedSprite2D
 @export var audio_player: AudioStreamPlayer
-@export var death_timer: Timer
 
 func enter():
-	enemy.velocity = Vector2.ZERO
-	
 	sprite.animation_finished.connect(_on_animation_finished)
 	sprite.play("hurt")
 	
@@ -22,14 +19,10 @@ func enter():
 	new_audio_player.play()
 	await new_audio_player.finished
 	new_audio_player.queue_free()
-	
 
 func _on_animation_finished():
 	sprite.animation_finished.disconnect(_on_animation_finished)
 	
-	enemy.collision_shape.disabled = true
+	player.is_controllable = false
 	
-	death_timer.start(1)
-	await death_timer.timeout
-	
-	enemy.queue_free()
+	GameManager.on_game_over()

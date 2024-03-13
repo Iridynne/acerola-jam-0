@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var detection_range := 96
 
 @onready var sprite := $AnimatedSprite2D
+@onready var collision_shape := $CollisionShape2D
 @onready var health_component := $HealthComponent
 @onready var state_machine := $StateMachine
 @onready var hurt_box := $Hurtbox

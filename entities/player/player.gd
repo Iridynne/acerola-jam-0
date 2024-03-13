@@ -10,10 +10,16 @@ extends CharacterBody2D
 
 @onready var camera := $Camera
 
+var is_controllable := true
+
 func _ready():
-	health_component.damaged.connect(on_player_damaged)
+	health_component.damaged.connect(_on_player_damaged)
+	health_component.died.connect(_on_player_died)
 
 func _physics_process(delta):
+	if !is_controllable:
+		return
+	
 	move_and_slide()
 
 	if velocity.x > 0:
@@ -29,11 +35,14 @@ func _physics_process(delta):
 	angle = clamp(angle, rotation - angle_delta, rotation + angle_delta)
 	item_component.global_rotation = angle
 
-func on_player_damaged(value: int):
+func _on_player_damaged(value: int):
 	state_machine.on_child_transition(state_machine.current_state, "hurt")
 
+func _on_player_died():
+	state_machine.on_child_transition(state_machine.current_state, "death")
+
 func _input(event):
-	if event.is_action_pressed("use"):
+	if event.is_action_pressed("use") and is_controllable:
 		item_component.use_item()
 
 func _on_hurtbox_area_entered(area):
