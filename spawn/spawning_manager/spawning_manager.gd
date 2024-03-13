@@ -11,6 +11,7 @@ var spawned_in_total: int
 var total_to_spawn: int
 
 var is_spawning := false
+var waves_spawned
 
 signal spawned_batch
 signal finished_spawning
@@ -20,6 +21,7 @@ func start_spawning(to_spawn_at_once: int, to_spawn_total: int = 0):
 		print('No spawn points')
 		return
 	
+	waves_spawned = 0
 	batch_size = to_spawn_at_once
 	total_to_spawn = to_spawn_total
 	is_spawning = true
@@ -59,4 +61,5 @@ func _spawn_batch():
 	print('Spawned %s enemies' % [enemies_to_spawn])
 	spawned_in_total += enemies_to_spawn
 	batch_size += 1
+	waves_spawned += 1
 	spawned_batch.emit()

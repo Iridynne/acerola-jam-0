@@ -97,11 +97,11 @@ speed = 80
 [node name="Camera" parent="." instance=ExtResource("2_lowok")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_8wpxw")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_437jv")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_jur7g")]
@@ -132,13 +132,11 @@ sprite = NodePath("../../AnimatedSprite2D")
 audio_player = NodePath("../../AudioStreamPlayer")
 
 [node name="ItemComponent" parent="." instance=ExtResource("9_b827w")]
-position = Vector2(0, 9)
 
 [node name="ItemSlot" parent="ItemComponent" index="0"]
 position = Vector2(12, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("10_lvwuy")]
-position = Vector2(0, 9)
 collision_layer = 2
 collision_mask = 4
 

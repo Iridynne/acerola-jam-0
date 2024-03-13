@@ -41,6 +41,14 @@ theme_override_constants/separation = 8
 [node name="Title" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_28n50")]
 layout_mode = 2
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveCount" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("2_28n50")]
+layout_mode = 2
+text = "Waves Defeated: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TryAgain" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("3_skns7")]
 layout_mode = 2

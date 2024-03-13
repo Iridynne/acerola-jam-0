@@ -12,7 +12,7 @@ extends Node
 @export_range(0, 59) var shift_end_minutes := 0
 
 # Minute duration in seconds
-@export var minute_duration := 0.3
+@export var minute_duration := 0.5
 
 var is_game_finished := false
 

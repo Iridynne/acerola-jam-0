@@ -1,8 +1,12 @@
 class_name VictoryScreen
 extends Control
 
+@onready var wave_count = $CanvasLayer/MarginContainer/VBoxContainer/WaveCount
+
 func _ready():
 	set_process(false)
+	var waves_defeated = SpawningManager.waves_spawned - 1 if SpawningManager.waves_spawned >= 1 else 0
+	wave_count.text = 'Waves Defeated: %s' % [waves_defeated]
 
 func _on_play_again_pressed():
 	GameManager.stop_game()

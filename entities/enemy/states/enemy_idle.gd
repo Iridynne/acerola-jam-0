@@ -5,6 +5,7 @@ extends State
 
 @export var enemy: Enemy
 @export var sprite: AnimatedSprite2D
+@export var nav_agent: NavigationAgent2D
 
 func enter():
 	sprite.play("idle")
@@ -14,6 +15,7 @@ func update(_delta: float):
 	if !player or !player.health_component.is_alive:
 		return
 	
-	var direction = player.global_position - enemy.global_position
+	nav_agent.target_position = player.global_position
+	var direction = enemy.to_local(nav_agent.get_next_path_position())
 	if direction.length() < enemy.detection_range:
 		transitioned.emit(self, "follow")

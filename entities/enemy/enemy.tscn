@@ -125,30 +125,40 @@ speed = 55
 detection_range = 1000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_s3p2s")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_83kv1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_mir1p")
-max_health = 80
+max_health = 60
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_q33f2")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite", "nav_agent")]
 script = ExtResource("4_bflh8")
 enemy = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
+nav_agent = NodePath("../../NavigationAgent2D")
 
-[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite")]
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite", "nav_agent", "nav_timer")]
 script = ExtResource("6_v5145")
 enemy = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
+nav_agent = NodePath("../../NavigationAgent2D")
+nav_timer = NodePath("../../NavigationTimer")
 
 [node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "sprite", "audio_player")]
 script = ExtResource("7_a7ppo")
@@ -169,7 +179,6 @@ audio_player = NodePath("../../AudioStreamPlayer")
 death_timer = NodePath("../../DeathTimer")
 
 [node name="Hurtbox" parent="." instance=ExtResource("7_88luo")]
-position = Vector2(0, 9)
 collision_layer = 4
 collision_mask = 2
 
@@ -180,7 +189,6 @@ shape = SubResource("CapsuleShape2D_o15gu")
 autostart = true
 
 [node name="Hitbox" parent="." instance=ExtResource("9_qrk4x")]
-position = Vector2(0, 9)
 collision_layer = 4
 collision_mask = 2
 damage = 5
